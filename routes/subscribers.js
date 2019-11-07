@@ -1,9 +1,15 @@
 const express = require('express')
 const router = express.Router()
+const Subscriber = require('../m/subscriber')
 
 //all
-router.get('/', (req,res) => {
-    res.send('Hey')
+router.get('/', async (req,res) => {
+    try {
+        const subscribers = await Subscriber.find() 
+        res.json(subscribers)
+    } catch(err) {
+        res.status(400).json({ message: err.message })
+    }
 })
 
 //one
