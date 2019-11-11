@@ -33,16 +33,40 @@ router.post('/', async (req,res) => {
 })
 
 
+
 //alter
-router.patch('/', (req,res) => {
-    
+router.patch('/:id', gSus, async (req,res) => {
+    if(req.body.name != null) {
+        res.subscriber.name = req.body.name
+    }
+    if(req.body.subscribedToChannel != null) {
+        res.subscriber.subscribedToChannel = req.body.subsribedToChannel
+    }
+    try {
+        const newlySubscriber = res.subscriber.save()
+        res.json(newlySubscriber)
+    }catch(err) {
+        res.status(400).json({ message: 'could not find' })
+    }
 })
 
 
 
+
+
+
+
+
+
+
 //delete
-router.delete('/:id', (req,res) => {
-    
+router.delete('/:id', gSus, async (req,res) => {
+  try {
+    await res.subscriber.remove()
+    res.json({ message: 'Deleted'})
+  }  catch (err) {
+      res.status(400).json({ message: err.message })
+  }
 })
 
 
