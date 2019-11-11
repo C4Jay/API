@@ -1,2 +1,16 @@
-GET http://localhost:3000/subscribers
 
+
+
+GET http://localhost:3000/subscribers/5dc80c405fc60630bcac190f
+
+###
+
+DELETE http://localhost:3000/subscribers/5dc80c405fc60630bcac190f
+
+###
+PATCH  http://localhost:3000/subscribers/5dc80c405fc60630bcac190f
+Content-Type: application/json
+
+{
+    "name": "nme6"
+}
